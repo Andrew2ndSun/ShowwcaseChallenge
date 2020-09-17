@@ -2,12 +2,11 @@ import React, { useState, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import { NotesState } from './notesReducer';
 import { useSelector, useDispatch } from "react-redux";
-import { addNote, addName } from "./actions";
+import { addNote, addName, resetNote } from "./actions";
 
 const Home: React.FC = () => {
 
     const [studentName, setName] = React.useState("");
-
     const updateName = (event: ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     };
@@ -18,7 +17,7 @@ const Home: React.FC = () => {
     const onAddNameClick = () => {
         addName(studentName);
         dispatch(addName(studentName))
-        setName("");
+        dispatch(resetNote(""))
     };
 
     return (

@@ -1,4 +1,4 @@
-import { ADD_NOTE, ADD_NAME } from "./actions"
+import { ADD_NOTE, ADD_NAME, RESET_NOTE } from "./actions"
 
 export interface NotesState {
   studentName: string,
@@ -22,6 +22,9 @@ export const notesReducer = (state:NotesState = initialState, action) => {
     }
     case ADD_NAME:{
       return {...state, studentName: action.payload}
+    }
+    case RESET_NOTE:{
+      return {...state, notes: []}
     }
     default:
       return state

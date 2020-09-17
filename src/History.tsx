@@ -19,7 +19,7 @@ const History: React.FC = () => {
             <ul>
                 {notes.map((note) => {
                     return <li key={note} className="listItemA">
-                        <a href="#"><img alt="icon" height={40} src="http://www.iconsdb.com/icons/preview/black/circle-xxl.png" width={40} />{note}</a></li>;
+                        <a><img alt="icon" height={20} src="http://www.iconsdb.com/icons/preview/black/circle-xxl.png" width={20} />{note}</a></li>;
 
                 })}
             </ul>

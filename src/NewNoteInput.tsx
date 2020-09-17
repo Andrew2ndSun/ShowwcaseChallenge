@@ -23,8 +23,7 @@ export const NewNoteInput: React.FC<NewNoteInputProps> = ({ addNote }) => {
       startYear:Number((document.getElementById("ys") as HTMLInputElement).value),
       endYear:Number((document.getElementById("ye") as HTMLInputElement).value),
       gpa:Number((document.getElementById("gpa") as HTMLInputElement).value),
-      description:(document.getElementById("des") as HTMLInputElement).value ?? undefined,
-      note:(document.getElementById("note") as HTMLInputElement).value ?? undefined
+      description:(document.getElementById("des") as HTMLInputElement).value ?? undefined
     });
     return false;
   };
@@ -36,7 +35,9 @@ export const NewNoteInput: React.FC<NewNoteInputProps> = ({ addNote }) => {
         <form id="survey-form">
           {/* name */}
           <label id="name-label" className="row-label" htmlFor="name">Name of School</label>
-          <input id="name" className="row-input" type="text" placeholder="Enter School's name" required />
+          <input onChange={updateNote}
+            id="name"
+            value={note} className="row-input" type="text" placeholder="Enter School's name" required />
           {/* email */}
           <Row>
             <Col>
@@ -69,15 +70,8 @@ export const NewNoteInput: React.FC<NewNoteInputProps> = ({ addNote }) => {
           
           <label id="des-label" className="row-label">Description (Optional)</label>
           <input id="des" className="row-input" type="text" />
-          <input
-            onChange={updateNote}
-            value={note}
-            id="note"
-            type="text"
-            name="note"
-            placeholder="Note"
-          />
-          <button id="button" onClick={onAddNoteClick}>Save</button>
+          
+          <button id="submit" onClick={onAddNoteClick}>Save</button>
         </form>
       </div>
 

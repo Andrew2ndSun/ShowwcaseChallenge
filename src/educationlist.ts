@@ -1,6 +1,6 @@
 export enum Degree { AS, BS, MS, PHD }
 
-export type Education = { schoolName: String, degree: String, major: String, startYear: Number, endYear: Number, gpa: Number, description: String | undefined, note: String | undefined }
+export type Education = { schoolName: String, degree: String, major: String, startYear: Number, endYear: Number, gpa: Number, description: String | undefined}
 export class educationlist{
     private static education: Array<Education>  = []
     private static listeners: Array<Function> = []
