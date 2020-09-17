@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { Row, Col } from "react-bootstrap";
+import {educationlist} from "./educationlist";
 
 interface NewNoteInputProps {
   addNote(note: string): void;
@@ -15,6 +16,17 @@ export const NewNoteInput: React.FC<NewNoteInputProps> = ({ addNote }) => {
   const onAddNoteClick = () => {
     addNote(note);
     setNote("");
+    educationlist.addEducation({
+      schoolName:(document.getElementById("name") as HTMLInputElement).value,
+      degree:(document.getElementById("degree") as HTMLInputElement).value,
+      major:(document.getElementById("major") as HTMLInputElement).value,
+      startYear:Number((document.getElementById("ys") as HTMLInputElement).value),
+      endYear:Number((document.getElementById("ye") as HTMLInputElement).value),
+      gpa:Number((document.getElementById("gpa") as HTMLInputElement).value),
+      description:(document.getElementById("des") as HTMLInputElement).value ?? undefined,
+      note:(document.getElementById("note") as HTMLInputElement).value ?? undefined
+    });
+    return false;
   };
 
   return (
@@ -42,32 +54,36 @@ export const NewNoteInput: React.FC<NewNoteInputProps> = ({ addNote }) => {
               <input id="major" className="row-input" type="text" placeholder="Enter your major" required />
             </Col>
             <Col>
-              <label id="email-label" className="row-label" htmlFor="email">Year start</label>
-              <input id="email" className="row-input" type="number" placeholder="Enter year start" required />
+              <label id="ys-label" className="row-label" htmlFor="yearStart">Year start</label>
+              <input id="ys" className="row-input" type="number" placeholder="Enter year start" required />
             </Col>
             <Col>
-              <label id="email-label" className="row-label" htmlFor="email">Year end</label>
-              <input id="email" className="row-input" type="number" placeholder="Enter year end" required />
+              <label id="ye-label" className="row-label" htmlFor="yearEnd">Year end</label>
+              <input id="ye" className="row-input" type="number" placeholder="Enter year end" required />
             </Col>
             <Col>
-              <label id="email-label" className="row-label" htmlFor="email">GPA</label>
-              <input id="email" className="row-input" type="number" placeholder="Enter GPA" required min={1} max={4} />
+              <label id="gpa-label" className="row-label" htmlFor="gpa">GPA</label>
+              <input id="gpa" className="row-input" type="number" placeholder="Enter GPA" required />
             </Col>
           </Row>
-          {/* Description */}
-          <label id="number-label" className="row-label">Description (Optional)</label>
-          <input id="Description" className="row-input" type="text"/>
+          
+          <label id="des-label" className="row-label">Description (Optional)</label>
+          <input id="des" className="row-input" type="text" />
           <input
             onChange={updateNote}
             value={note}
+            id="note"
             type="text"
             name="note"
             placeholder="Note"
           />
-          <button id="submit" onClick={onAddNoteClick}>Save</button>
+          <button id="button" onClick={onAddNoteClick}>Save</button>
         </form>
       </div>
 
     </div>
+    
   );
 };
+
+    
